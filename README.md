@@ -1,9 +1,8 @@
 <div align="center">
   <h2>JARITMATIKA</h2>
-  Sebuah alat untuk melakukan operasi aritmatika menggunakan jari dengan memanfaatkan teknologi image recognition
+  Sebuah alat revolusioner yang akan mengubah kebiasaan masyarakat dalam melihat dunia, dunia tidak lagi akan melakukan operasi aritmatika dengan kalkulator tetapi menggunakan sebuah alat yang mengadopsi teknologi <i>Image Recognition</i>  ini. 
 </div>
 
-## TODO
-- [ ] Operasi Perkalian
-- [ ] Operasi Pengurangan 
-- [ ] Operasi Pembagian
+
+*<b>Coming Soon</b>*
+
