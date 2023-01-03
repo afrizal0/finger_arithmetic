@@ -35,20 +35,18 @@ with mp_hands.Hands(
         # Get hand index to check label (left or right)
         handIndex = results.multi_hand_landmarks.index(hand_landmarks)
         handLabel = results.multi_handedness[handIndex].classification[0].label
-		
-        print(handIndex)
         # Set variable to keep landmarks positions (x and y)
         handLandmarks = []
 
         # Fill list with x and y positions of each landmark
         for landmarks in hand_landmarks.landmark:
           handLandmarks.append([landmarks.x, landmarks.y])
-        
-        print(handLandmarks[4][0])	
 
         # Other fingers: TIP y position must be lower than PIP y position, 
         #   as image origin is in the upper left corner.
         if handLabel == "Left":
+          if handLandmarks[4][1] < handLandmarks[2][1]:
+            leftCount = leftCount+1
           if handLandmarks[8][1] < handLandmarks[6][1]:       #Index finger
             leftCount = leftCount+1
           if handLandmarks[12][1] < handLandmarks[10][1]:     #Middle finger
@@ -59,6 +57,8 @@ with mp_hands.Hands(
             leftCount = leftCount + 1
 
         if handLabel == "Right":
+          if handLandmarks[4][1] < handLandmarks[2][1]:
+            rightCount = rightCount+1
           if handLandmarks[8][1] < handLandmarks[6][1]:       #Index finger
             rightCount = rightCount+1
           if handLandmarks[12][1] < handLandmarks[10][1]:     #Middle finger
@@ -78,7 +78,7 @@ with mp_hands.Hands(
             mp_drawing_styles.get_default_hand_connections_style())
 
     # Display finger count
-    cv2.putText(image, str(leftCount + rightCount), (50, 450), cv2.FONT_HERSHEY_SIMPLEX, 3, (255, 0, 0), 10)
+    cv2.putText(image, str(f"{leftCount}{'+'}{rightCount}{'='}{rightCount + leftCount}"), (50, 450), cv2.FONT_HERSHEY_SIMPLEX, 3, (255, 0, 0), 10)
     
     # Display image
     cv2.imshow('MediaPipe Hands', image)
